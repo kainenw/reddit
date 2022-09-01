@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,600;1,200;1,400&family=Roboto&display=swap');
+
+:root {
+  /* Color Theme Swatches in HSLA */
+  --red: #D1001C;
+  --light: #995961;
+  --medium: #850012;
+  --white: #E4BFC4;
+  --dark: #57000C; 
+}
+
+* {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+  background-color: var(--white);
+  color: white;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+header {
+  background-color: var(--light);
+}
+
+
+
+header h1,
+header input {
+  display: inline-block;
+}
+
+h1 {
+  margin: 0;
+  padding: 1rem;
+  /*not displaying
+  font-weight: 600;*/
+}
+
+header input {
+  float: right;
+  margin: 1rem;
+  height: 2rem;
+}
+
+h1 span {
+  color: var(--medium);
+}
+
+main {
+  display: grid;
+  grid-template: 1fr / 1fr 2fr;
+  grid-gap: 0.5rem;
+  margin: 0.5rem;
+  height: 100%;
+  margin-left: 16.15%;
+  margin-right: 16.15%;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+div#subreddits {
+  grid-area: 1 / 1 / 1 / 1;
+  background-color: var(--light);
+  border-radius: 20px;
+  padding-left: 2rem;
+}
+
+ div#posts {
+  grid-area: 1 / 2 / 1 / 2;
+ }
+
+.post {
+  display: flexbox;
+  flex-direction: column;
+  float: right;
+  align-items: bottom;
+  background-color: var(--light);
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  width: 100%;
+  float: left;
+  border-radius: 20px;
+}
+
+.sub {
+  text-align: center;
+}
+
+h4 {
+  padding-left: 1rem;
+}
+
+.post h3,
+.post h6,
+.post p {
+  margin: 0;
+  padding-left: 1.5rem
+}
+
+.post h3 {
+  padding-top: 1rem;
+}
+
+.post p {
+  padding-bottom: 1rem;
+}

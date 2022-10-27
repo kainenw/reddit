@@ -1,14 +1,16 @@
+
 import { React, /*useState, useEvent*/ } from "react";
 
 //import { ReactRouter as Router, Route} from "react-router-dom"
 
-export function Post (props) {
+function PostList (props) {
     /*onst [title, setTitle] = useState(props.title);
     const [text, setText] = useState(props.text);
     const [image, setImage] = useState(props.image);
     const [subreddit, setSubreddit] = useState(props.subreddit);
     const [user, setUser] = useState(props.user);
     const [id, setId] = useState(props.id);*/
+
 
     return (
         <div className="post">
@@ -19,3 +21,5 @@ export function Post (props) {
         </div>
     );
 }
+
+export default PostList;

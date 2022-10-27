@@ -1,6 +1,13 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
-export const SideList = (props) => {
+//switch between list and specific subreddit sidebar
+
+
+
+export const SideBar = (props) => {
+    const { path, url } = useLocation();
+    
     return (
     <div>
         <h3 class='sub'>subreddits</h3>
@@ -10,3 +17,5 @@ export const SideList = (props) => {
         })}
     </div>)
 }
+
+export default SideBar;

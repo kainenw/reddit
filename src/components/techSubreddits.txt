@@ -1,0 +1,6 @@
+
+
+
+const techSubreddits= [
+"/r/Technology", "/r/AskTechnology", "/r/Futurology", "/r/KeepOurNetFree ", "/r/pirateparty ", "/r/privacy", "/r/Gadgets", "/r/Hardware", "/r/Tech", "/r/Technews", "/r/Realtech", "/r/InternetIsBeautiful ", "/r/RenewableEnergy", "/r/SelfDrivingCars", "/r/TechSupport", "/r/TalesFromTechSupport", "/r/TechSupportGore", "/r/TechnologyPorn", "/r/ImaginaryTechnology", "/r/Programming", "/r/Learnprogramming", "/r/CScareerquestions", "/r/CompSci", "/r/NetSec", "/r/Engineering", "/r/Hacking", "/r/Software"
+]

@@ -1,0 +1,58 @@
+import { CreateSliceOptions, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+// T-64 fix thunk functionality
+
+export const FetchHomeSideBar = createAsyncThunk(
+    'search/setSideBar',
+    async (sort) => {
+        const endpoint = 'www.reddit.com/' + sort + '.json?'
+        const response = await fetch(endpoint);
+        const json = response.json;
+        return json;
+    }
+)
+
+export const FetchSearchSideBar = createAsyncThunk(
+    'search/setSideBar',
+    async (sort) => {
+        const endpoint = 'www.reddit.com/' + sort + '.json?'
+        const response = await fetch(endpoint);
+        const json = response.json;
+        return json;
+    }
+)
+
+export const FetchPostSideBar = createAsyncThunk(
+    'post/setSideBar',
+    async (sort) => {
+        const endpoint = 'www.reddit.com/' + sort + '.json?'
+        const response = await fetch(endpoint);
+        const json = response.json;
+        return json;
+    }
+)
+
+// T-63 hook up thunks
+
+const techSubreddits= [
+    "/r/Technology", "/r/AskTechnology", "/r/Futurology", "/r/KeepOurNetFree ", "/r/pirateparty ", "/r/privacy", "/r/Gadgets", "/r/Hardware", "/r/Tech", "/r/Technews", "/r/Realtech", "/r/InternetIsBeautiful ", "/r/RenewableEnergy", "/r/SelfDrivingCars", "/r/TechSupport", "/r/TalesFromTechSupport", "/r/TechSupportGore", "/r/TechnologyPorn", "/r/ImaginaryTechnology", "/r/Programming", "/r/Learnprogramming", "/r/CScareerquestions", "/r/CompSci", "/r/NetSec", "/r/Engineering", "/r/Hacking", "/r/Software"
+    ]
+
+const option = {
+    name: 'sideBar',
+    initialState: techSubreddits,
+    reducer: {
+
+    },
+    extraReducers: {
+
+    }
+}
+
+const sideBar = createSlice(option);
+
+export const selectSideBar = state => state;
+
+//actions
+
+export default sideBar;

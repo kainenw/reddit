@@ -1,23 +1,36 @@
 import React from 'react'
 //import ReactDOM from 'react-dom'
 import './App.css';
-import Home from '../Pages/Home/Home'
-import Search from '../Pages/Search/Search';
-import Subreddit from '../Pages/Subreddit/Subreddit';
-import { BrowserRouter as Router, Route, /* Link */ } from 'react-router-dom';
+import SideBar from '../components/SideBar/SideBar';
+import PostList from '../components/PostList/PostList';
+import NavBar from '../components/NavBar/NavBar';
+import { BrowserRouter as Router, Routes, Route, /* Link */ } from 'react-router-dom';
+import FetchPostList from '../components/PostList/FetchPostList';
+import FetchSideBar from '../components/SideBar/FetchSideBar';
 
-class App extends React.Component {
-  render() {
-    return  (
-      <Router>
-        <main>
-          <Route path="/subreddit/:subreddit" element={<Subreddit/>} />
-          <Route path="/search/:searchTerm" element={<Search/>} />
-          <Route path="/" element={<Home/>} />
-        </main>
-      </Router>
-    )
+const App = () => {
+  return  (
+    <Router>
+      <main>
+        <div id="logic">
+        <Routes>
+          <Route path="/subreddit/:subreddit" element="<FetchPostList /> <FetchSideBar />" />
+          <Route path="/search/:searchTerm" element="<FetchPostList /> <FetchSideBar />" />
+          <Route path="/" element="<FetchPostList /> <FetchSideBar />" />
+        </Routes>
+        </div>
+        <div id="container">
+          <NavBar />
+          <SideBar />
+          <PostList />
+        </div>
+      </main>
+    </Router>
+  )
   }
-}
+
+// T-67 let components change URL
+
+// T-68 write fetch logic in one file that depends on the current location
 
 export default App;

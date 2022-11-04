@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "reddit",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"powershell.cwd": "c:\\Users\\Me\\My Drive\\projects\\Audio API\\12-tet",
+		"cSpell.words": [
+			"predeploy",
+			"reduxjs",
+			"subreddits"
+		]
+	}
+}

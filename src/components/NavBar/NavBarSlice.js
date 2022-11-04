@@ -2,18 +2,28 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const option = {
     name: 'searchTerm',
-    initialState: '',
+    initialState: {
+        searchTerm: '',
+        sort: 'top'
+    },
     reducer: {
         setSearchTerm: (state, action) => {
-            state = action.payload
+            state.searchTerm = action.payload
+        },
+        setSort: (state, action) => {
+            state.sort = action.payload
         }
     }
 }
 
-const searchTerm = createSlice(option);
+const navBar = createSlice(option);
 
-export const selectSearchTerm = state => state;
+export const selectNavBar = state => state;
 
-export const { setSearchTerm } = searchTerm.actions;
+export const selectSearchTerm = state => state.searchTerm
 
-export default searchTerm;
+export const selectSort = state => state.sort
+
+export const { setSearchTerm, setSort } = navBar.actions;
+
+export default navBar.reducer;

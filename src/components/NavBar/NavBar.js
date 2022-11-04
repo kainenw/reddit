@@ -1,6 +1,8 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { selectSearchTerm, setSearchTerm } from "./NavBarSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const NavBar = () => {
 

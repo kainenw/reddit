@@ -16,7 +16,7 @@ const App = () => {
         <Routes>
           <Route path="/subreddit/:subreddit" element="<FetchPostList /> <FetchSideBar />" />
           <Route path="/search/:searchTerm" element="<FetchPostList /> <FetchSideBar />" />
-          <Route path="/" element="<FetchPostList /> <FetchSideBar />" />
+          <Route path="/" element={(<div><FetchPostList /> <FetchSideBar /></div>)} />
         </Routes>
         </div>
         <div id="container">

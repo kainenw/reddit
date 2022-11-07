@@ -16,8 +16,8 @@ export const FetchHomePosts = createAsyncThunk(
 
 export const FetchSearchPosts = createAsyncThunk(
     'search/setSearchPosts',
-    async (sort) => {
-        const endpoint = 'www.reddit.com/' + sort + '.json?'
+    async (searchTerm, sort) => {
+        const endpoint = 'www.reddit.com/search.json?q=' + searchTerm + '&' + sort
         const response = await fetch(endpoint);
         const json = response.json;
         return json;
@@ -26,8 +26,8 @@ export const FetchSearchPosts = createAsyncThunk(
 
 export const FetchSubredditPosts = createAsyncThunk(
     'post/setSubredditPosts',
-    async (sort) => {
-        const endpoint = 'www.reddit.com/' + sort + '.json?'
+    async (subreddit, sort) => {
+        const endpoint = 'www.reddit.com/r/' + subreddit + '.json?&' + sort
         const response = await fetch(endpoint);
         const json = response.json;
         return json;

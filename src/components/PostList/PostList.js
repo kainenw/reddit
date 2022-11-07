@@ -1,28 +1,27 @@
-
-import { React, /*useState, useEvent*/ } from "react";
+import React, { /*useState, useEvent*/ } from "react";
 import { useSelector } from "react-redux";
 import { selectPostList } from "./PostListSlice";
 
-//import { ReactRouter as Router, Route} from "react-router-dom"
-
-function PostList () {
+const PostList = () => {
     
-
-    const postList = useSelector(selectPostList);
+    let posts = useSelector(selectPostList);
+    if ( posts.posts ) {
+        posts = posts.data.children
+    }
 
     const renderPost = (item) => {
+        let post = item.data
         return (
             <div className="post">
-                <h3>title: {item.title}</h3>
-                <h6>{item.user}</h6>
-                <h6>{item.subreddit}</h6>
-                <p>text: {item.text}</p>
+                <h3>title: {post.title}</h3>
+                <h6>{post.user}</h6>
+                <h6>{post.subreddit}</h6>
+                <p>text: {post.text}</p>
             </div>
-        )
-    }
+        )}
     return (
-        <div id="postList" >
-            {postList.map(renderPost)}
+        <div id="posts" >
+            {posts.posts && posts.map(renderPost)}
         </div>
     );
 }

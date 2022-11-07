@@ -11,7 +11,9 @@ const NavBar = () => {
     const dispatch = useDispatch();
 
     const handleChange = (event) => {
-        dispatch(setSearchTerm(event.target.value))
+        const value = event.target.value
+        console.log(value)
+        dispatch(setSearchTerm(value))
     }
 
     return (

@@ -1,33 +1,33 @@
-import React from 'react'
-//import ReactDOM from 'react-dom'
-import './App.css';
-import SideBar from '../components/SideBar/SideBar';
-import PostList from '../components/PostList/PostList';
-import NavBar from '../components/NavBar/NavBar';
-import { BrowserRouter as Router, Routes, Route, /* Link */ } from 'react-router-dom';
-import FetchPostList from '../components/PostList/FetchPostList';
-import FetchSideBar from '../components/SideBar/FetchSideBar';
+import React from "react";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import HomePage from "../components/container/Pages/HomePage";
+import SearchPage from "../components/container/Pages/SearchPage";
+import SearchBarLogic from "../components/container/SearchBar/SearchBarLogic";
 
-const App = () => {
-  return  (
+const App = (props) => {
+  return (
     <Router>
-      <main>
-        <div id="logic">
-        <Routes>
-          <Route path="/subreddit/:subreddit" element="<FetchPostList /> <FetchSideBar />" />
-          <Route path="/search/:searchTerm" element="<FetchPostList /> <FetchSideBar />" />
-          <Route path="/" element={(<div><FetchPostList /> <FetchSideBar /></div>)} />
-        </Routes>
-        </div>
-        <div id="container">
-          <NavBar />
-          <SideBar />
-          <PostList />
-        </div>
-      </main>
+      <header>
+        <h1>
+          <NavLink path="/" replace={true}>
+            <span>Red</span>dit
+          </NavLink>
+        </h1>
+        <SearchBarLogic />
+      </header>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search/::searchTerm" element={<SearchPage />} />
+      </Routes>
     </Router>
-  )
-  }
+  );
+};
 
 // T-67 let components change URL
 

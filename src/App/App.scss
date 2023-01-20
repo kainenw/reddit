@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,600;1,200;1,400&family=Roboto&display=swap");
+
+$red: #d1001c;
+$light: #995961;
+$medium: #850012;
+$white: #e4bfc4;
+$dark: #57000c;
+
+$font-stack: "Noto Sans", sans-serif;
+
+* {
+  max-width: 100%;
+  margin: 0;
+  float: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: white;
+  font-family: $font-stack;
+  background-color: $white;
+}
+
+header {
+  background-color: $light;
+  display: inline-flex;
+  width: 100%;
+  padding: 0;
+  NavLink {
+    padding: 1rem;
+    /* font-weight: 600 */
+    /*not displaying*/
+    color: $white;
+    text-decoration: none;
+    padding: 10px;
+    span {
+      color: $medium;
+    }
+  }
+  input {
+    color: black;
+    display: inline-block;
+    position: relative;
+    right: 0px;
+    margin: 1rem;
+    height: 2rem;
+    top: auto;
+    bottom: auto;
+  }
+}
+
+main {
+  display: grid;
+  grid-template: 1fr / 1fr 2fr;
+  grid-gap: 0.5rem;
+  margin: 0.5rem;
+  height: 100%;
+  margin-left: 15%;
+  margin-right: 15%;
+  #sidebar {
+    grid-area: 1 / 1 / 1 / 1;
+    background-color: $light;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 0.5rem;
+    .subreddits {
+      text-align: center;
+      padding: 1rem;
+    }
+    .item {
+      padding-left: 1rem;
+    }
+  }
+  #posts {
+    grid-area: 1 / 2 / 1 / 2;
+    display: flexbox;
+    flex-direction: column;
+    .post {
+      float: right;
+      align-items: bottom;
+      background-color: $light;
+      margin-bottom: 0.5rem;
+      width: 100%;
+      float: left;
+      border-radius: 20px;
+      #title,
+      #user,
+      #subreddit {
+        margin: 0;
+        padding: 1.5rem;
+        padding-bottom: 0;
+      }
+      #text,
+      #image {
+        padding-bottom: 1rem;
+        width: auto;
+      }
+    }
+  }
+}
+
+/*
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear
+  }
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+*/

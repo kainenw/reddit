@@ -1,18 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Post from "../../presentation/Post";
+import { Link } from "react-router-dom";
 
-const PostListLogic = (props) => {
+const postsLogic = (props) => {
   // filter posts in the selector method
-  const posts = useSelector((state) => state.postList.posts.data.children);
-  const isLoaded = useSelector((state) => state.postList.isLoaded);
+  const posts = useSelector((state) => state.posts.posts.data.children);
+  const isLoaded = useSelector((state) => state.posts.isLoaded);
   /* if (posts) {
     posts = posts.map(postobjects)
     console.log("number of posts:" + posts.length)
   } */
 
   //for testing
-  //let rawData = postList.raw
+  //let rawData = posts.raw
   //let posts = postobjects(rawData)
 
   const callback = (item, i) => {
@@ -26,10 +27,11 @@ const PostListLogic = (props) => {
     if (hasImage) {
       media = image;
     }
-    if (hasVideo) {
+    if (item.is_Video) {
       media = item.data.media.reddit_video.fallback_url;
       console.log(media);
     }
+    const subreddit = item.data.subreddit_name_prefixed;
 
     return (
       <Post
@@ -37,6 +39,7 @@ const PostListLogic = (props) => {
         media={media}
         hasImage={hasImage}
         hasVideo={hasVideo}
+        subreddit={subreddit}
         key={i}
       />
     );
@@ -49,4 +52,4 @@ const PostListLogic = (props) => {
   );
 };
 
-export default PostListLogic;
+export default postsLogic;

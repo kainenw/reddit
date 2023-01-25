@@ -2,7 +2,6 @@ import React from "react";
 
 const SearchBar = (props) => {
   return (
-    <div>
       <form onSubmit={event => event.preventDefault()}>
         <input
           onChange={props.handleChange}
@@ -13,7 +12,6 @@ const SearchBar = (props) => {
           placeholder={"Search"}
         />
       </form>
-    </div>
   );
 };
 

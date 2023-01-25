@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const post = props.post;
@@ -6,9 +7,12 @@ const Post = (props) => {
     <div className="post">
       <div id="title-bar">
         <h3 id="title">{post.title}</h3>
-        <div id="user&subreddit"></div>
-        <p id="user">{"u/" + post.author}</p>
-        <p id="subreddit">{"r/" + post.subreddit}</p>
+        <div id="user-subreddit">
+          <p id="user">{"u/" + post.author}</p>
+          <Link id="subreddit" to={"../" + props.subreddit} replace={true}>
+            {props.subreddit}
+          </Link>
+        </div>
       </div>
       <div id="post-body">
         {props.hasImage && (
@@ -19,7 +23,7 @@ const Post = (props) => {
             <source src={props.media} type="video/mp4" />
           </video>
         )}
-        {post.text && <p id="text">{post.text}</p>}
+        {post.selftext && <p id="text">{post.selftext}</p>}
       </div>
     </div>
   );

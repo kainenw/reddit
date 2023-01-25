@@ -10,7 +10,7 @@ export const FetchHomePosts = createAsyncThunk(
   "posts/FetchHomePosts",
   async (sort) => {
     const endpoint = "https://www.reddit.com/" + sort + ".json?";
-    console.log(sort)
+    console.log(sort);
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
@@ -19,11 +19,12 @@ export const FetchHomePosts = createAsyncThunk(
 
 export const FetchSearchPosts = createAsyncThunk(
   "posts/FetchSearchPosts",
-  async (searchTerm/* , sort */) => {
-    /* console.log(sort)
-    console.log(searchTerm) */
-    const endpoint ="https://www.reddit.com/search.json?q=" + searchTerm/*  + "&" + sort */;
-    /* console.log(endpoint); */
+  async (searchTerm /* sort */) => {
+    /* console.log(sort) */
+    console.log(searchTerm);
+    const endpoint =
+      "https://www.reddit.com/search.json?q=" + searchTerm; /* + "&" + sort  */
+    console.log(endpoint);
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
@@ -33,29 +34,17 @@ export const FetchSearchPosts = createAsyncThunk(
 export const FetchSubredditPosts = createAsyncThunk(
   "posts/setSubredditPosts",
   async (subreddit, sort) => {
-    const endpoint = "https://www.reddit.com/r/" + subreddit + ".json?&" + sort;
+    const endpoint =
+      "https://www.reddit.com/" + subreddit + ".json?"; /* &" + sort */
+    console.log(endpoint);
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
   }
 );
 
-/* const sortPosts = (item) => {
-    const result = {
-        title: item.title,
-        user: item.user,
-        subreddit: item.subreddit,
-        text: item.text,
-        image: item.image,
-        id: item.id
-    }
-    return result
-} */
-
-// T-62 hook up thunk
-
 const options = {
-  name: "postList",
+  name: "posts",
   initialState: {
     posts: {
       data: {
@@ -90,9 +79,11 @@ const options = {
       state.isLoading = true;
       state.hasError = false;
     });
-    builder.addCase(FetchSearchPosts.fulfilled, (state, setPosts) => {
-      state.isLoading = true;
+    builder.addCase(FetchSearchPosts.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.hasError = false;
+      state.isLoaded = true;
+      state.posts = action.payload;
     });
     builder.addCase(FetchSearchPosts.rejected, (state) => {
       state.isLoading = false;
@@ -103,8 +94,9 @@ const options = {
       state.hasError = false;
     });
     builder.addCase(FetchSubredditPosts.fulfilled, (state, action) => {
-      state.isLoading = true;
+      state.isLoading = false;
       state.hasError = false;
+      state.isLoaded = true;
       state.posts = action.payload;
     });
     builder.addCase(FetchSubredditPosts.rejected, (state) => {
@@ -114,8 +106,8 @@ const options = {
   },
 };
 
-const postList = createSlice(options);
+const posts = createSlice(options);
 
 export const selectPosts = (state) => state.posts;
 
-export default postList.reducer;
+export default posts.reducer;

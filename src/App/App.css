@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,600;1,200;1,400&family=Roboto&display=swap");
 * {
-  max-width: 100%;
-  margin: 0;
-  float: center;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
+  width: 100%;
   color: white;
   font-family: "Noto Sans", sans-serif;
   background-color: #E4BFC4;
+  margin: 0;
+  font-size: 15px;
 }
 
 header {
@@ -19,13 +19,15 @@ header {
   padding: 0;
 }
 
-NavLink {
-  padding: 1rem;
+a#home-button {
   /* font-weight: 600 */
   /*not displaying*/
-  color: #E4BFC4;
+  padding: 0.5rem;
+}
+
+a {
   text-decoration: none;
-  padding: 10px;
+  color: white;
 }
 
 span {
@@ -35,17 +37,16 @@ span {
 input {
   color: black;
   display: inline-block;
-  position: relative;
-  right: 0px;
+  position: absolute;
+  right: 0;
+  padding: 1rem;
   margin: 1rem;
-  height: 2rem;
-  top: auto;
-  bottom: auto;
 }
 
 main {
+
   display: grid;
-  grid-template: 1fr/1fr 2fr;
+  grid-template: 4rem 1fr/1fr 2fr;
   grid-gap: 0.5rem;
   margin: 0.5rem;
   height: 100%;
@@ -54,14 +55,20 @@ main {
 }
 
 #sidebar {
-  grid-area: 1/1/1/1;
+  grid-area: 2/1/2/1;
   background-color: #995961;
   border-radius: 20px;
   padding: 2rem;
   margin-bottom: 0.5rem;
+  max-width: 100%;
 }
 
-.subreddits {
+.sidebar-subreddit {
+  padding: 0.25rem;
+  display: block;
+}
+
+#sidebar h4 {
   text-align: center;
   padding: 1rem;
 }
@@ -71,9 +78,18 @@ main {
 }
 
 #posts {
-  grid-area: 1/2/1/2;
+  grid-area: 2/2/2/2;
   display: flexbox;
   flex-direction: column;
+  max-width: 100%;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h4 {
+  grid-area: 1/2/1/2
 }
 
 .post {
@@ -84,20 +100,32 @@ main {
   width: 100%;
   float: left;
   border-radius: 20px;
+  display: flexbox;
+  flex-direction: column;
 }
 
-#title,
-#user,
-#subreddit {
-  margin: 0;
-  padding: 1.5rem;
-  padding-bottom: 0;
+#title-bar {
+  display: inline-flex;
+  margin: 0.5rem;
+}
+
+#subreddit-user {
+  display: block;
+  padding: 5rem;
+  justify-items: center;
+}
+
+#title {
+  text-align: center;
 }
 
 #text,
 #image {
   padding-bottom: 1rem;
-  width: auto;
+}
+
+#image {
+  width: 100%;
 }
 
 /*

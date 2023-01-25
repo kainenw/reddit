@@ -1,27 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FetchSearchPosts } from "../PostList/PostListSlice";
+import { FetchSearchPosts } from "../Posts/PostsSlice";
 //import { FetchSearchSideBar } from "../SideBar/SideBarSlice";
-import PostListLogic from "../PostList/PostListLogic";
+import PostsLogic from "../Posts/PostsLogic";
 import SideBarLogic from "../SideBar/SideBarLogic";
 
 const SearchPage = () => {
   const sort = useSelector((state) => state.searchBar.sort);
   const searchTerm = useSelector((state) => state.searchBar.searchTerm);
   const dispatch = useDispatch();
-  console.log(searchTerm);
-  console.log(sort);
   useEffect(() => {
-    dispatch(FetchSearchPosts(searchTerm/* , sort */));
-    //dispatch(FetchSearchSideBar);
-  }, [dispatch, searchTerm, sort])
-
-  /* console.log("searchTerm: " + searchTerm + "sort:" + sort) */
+    dispatch(FetchSearchPosts(sort));
+    dispatch(FetchSearchPosts(searchTerm /* , sort */));
+  }, [dispatch, searchTerm /* , sort */]);
 
   return (
     <main>
+      <h4>Showing results for: {searchTerm}</h4>
       <SideBarLogic page="search" />
-      <PostListLogic page="search" />
+      <PostsLogic page="search" />
     </main>
   );
 };

@@ -8,7 +8,7 @@ const SideBar = () => {
 
   const process = (item) => {
     let subreddit = item;
-    return <h4 className="item" key={subreddit}>{subreddit}</h4>;
+    return <h4 className="sidebar-item" key={subreddit}>{subreddit}</h4>;
   };
 
   // add loading functionality

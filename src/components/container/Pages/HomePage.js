@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FetchHomePosts } from "../PostList/PostListSlice";
+import { FetchHomePosts } from "../Posts/PostsSlice";
 import { FetchHomeSideBar } from "../SideBar/SideBarSlice";
-import PostListLogic from "../PostList/PostListLogic";
+import PostsLogic from "../Posts/PostsLogic";
 import SideBarLogic from "../SideBar/SideBarLogic";
 
 const HomePage = () => {
@@ -17,7 +17,8 @@ const HomePage = () => {
 
   return (
     <main>
-      <PostListLogic page="home" />
+      <h4>{sort} posts</h4>
+      <PostsLogic page="home" />
       <SideBarLogic page="home" />
     </main>
   );

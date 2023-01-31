@@ -10,13 +10,18 @@ body {
   background-color: #E4BFC4;
   margin: 0;
   font-size: 15px;
+  overflow-wrap: break-word;
 }
 
 header {
   background-color: #995961;
   display: inline-flex;
-  width: 100%;
   padding: 0;
+  width: 100%;
+}
+
+NavBar {
+  width: 100%;
 }
 
 a#home-button {
@@ -49,7 +54,6 @@ main {
   grid-template: 4rem 1fr/1fr 2fr;
   grid-gap: 0.5rem;
   margin: 0.5rem;
-  height: 100%;
   margin-left: 15%;
   margin-right: 15%;
 }
@@ -81,7 +85,6 @@ main {
   grid-area: 2/2/2/2;
   display: flexbox;
   flex-direction: column;
-  max-width: 100%;
 }
 
 h3 {
@@ -97,8 +100,8 @@ h4 {
   align-items: bottom;
   background-color: #995961;
   margin-bottom: 0.5rem;
-  width: 100%;
   float: left;
+  width: 100%;
   border-radius: 20px;
   display: flexbox;
   flex-direction: column;
@@ -124,8 +127,35 @@ h4 {
   padding-bottom: 1rem;
 }
 
+#text {
+  padding: 1rem;
+}
+
 #image {
   width: 100%;
+}
+
+@media (max-width: 390px) {
+  #sidebar {
+    display: none;
+  }
+  
+  main {
+    display: block;
+    font-size: 12px;
+    margin: auto;
+  }
+
+  #posts {
+    min-width: 200px;
+    width: 90%;
+    display: flex;
+    margin: auto;
+  }
+
+  input {
+    width: 3rem;
+  }
 }
 
 /*

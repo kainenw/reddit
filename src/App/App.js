@@ -22,7 +22,7 @@ const App = (props) => {
           </NavLink>
         </h1>
         <SearchBarLogic />
-        <TitleBar />
+        {/* <TitleBar /> */}
       </header>
       <Routes>
         <Route path="/search/:searchTerm" element={<SearchPage />} />

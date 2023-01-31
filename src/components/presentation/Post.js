@@ -19,7 +19,7 @@ const Post = (props) => {
           <img src={props.media} alt={post.title} id="image" />
         )}
         {props.hasVideo && (
-          <video id="video">
+          <video id="video" width="100%" height="auto" controls>
             <source src={props.media} type="video/mp4" />
           </video>
         )}

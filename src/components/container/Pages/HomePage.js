@@ -9,6 +9,14 @@ const HomePage = () => {
   const sort = useSelector((state) => state.searchBar.sort);
   const searchTerm = useSelector((state) => state.searchBar.searchTerm);
 
+  var docWidth = document.documentElement.offsetWidth;
+
+  [].forEach.call(document.querySelectorAll("*"), function(el) {
+    if (el.offsetWidth > docWidth) {
+      console.log(el);
+    }
+  });
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(FetchHomePosts(sort));

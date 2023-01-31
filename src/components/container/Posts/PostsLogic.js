@@ -20,16 +20,13 @@ const postsLogic = (props) => {
     let media;
     let image = item.data.url_overridden_by_dest;
     let hasImage;
+    let hasVideo = item.data.is_video;
     if (image) {
-      hasImage = item.data.url_overridden_by_dest.includes(".jpg");
-    }
-    const hasVideo = item.media !== undefined;
-    if (hasImage) {
+      hasImage = image.includes(".jpg") || image.includes(".png");
       media = image;
     }
-    if (item.is_Video) {
+    if (hasVideo) {
       media = item.data.media.reddit_video.fallback_url;
-      console.log(media);
     }
     const subreddit = item.data.subreddit_name_prefixed;
 

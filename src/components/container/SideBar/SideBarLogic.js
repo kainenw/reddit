@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 //switch between list and specific subreddit sidebar
 
 export const SideBarLogic = (props) => {
-  const sideBar = useSelector((state) => state.sideBar.list);
+  let list = useSelector((state) => state.sideBar.list);
+  let raw = useSelector((state) => state.sideBar.raw);
 
+  console.log(raw)
+  useEffect(() => {
+    if (raw !== null & raw !== {}) {
+      list =[]
+      raw.data.children.map((item) =>
+        list.push(item.data.subreddit_name_prefixed)
+      );
+    } 
+  }, [raw]);
+  
   const callback = (item, i) => {
-    /* if (sideBar.data.children) {
-      const processed = sideBar.data.children
-    } */
     return (
       <div>
         <Link
@@ -28,7 +36,7 @@ export const SideBarLogic = (props) => {
   return (
     <div id="sidebar" className="column">
       <h4>Popular Subreddits</h4>
-      {sideBar ? sideBar.map(callback) : <h1> LOADING</h1>}
+      {list ? list.map(callback) : <h1> LOADING</h1>}
     </div>
   );
 };

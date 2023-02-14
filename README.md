@@ -8,6 +8,12 @@
 
 ## Technologies used
 
+### React
+
+### Redux
+
+
+
 ## Features
 
 ## Future work

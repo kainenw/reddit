@@ -8,16 +8,15 @@ import SideBarLogic from "../SideBar/SideBarLogic";
 import { useParams } from "react-router-dom";
 
 const SubredditPage = () => {
-  const sort = useSelector((state) => state.searchBar.sort);
-  const searchTerm = useSelector((state) => state.searchBar.searchTerm);
+  const sort = useSelector((state) => state.NavBar.sort);
+  const searchTerm = useSelector((state) => state.NavBar.searchTerm);
 
   const { subreddit } = useParams();
-  console.log(subreddit);
 
   //add current subreddit to fetchsidebar
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(FetchSubredditPosts("r/" + subreddit /* , sort */));
+    dispatch(FetchSubredditPosts(subreddit + ".json?&" + sort));
     dispatch(FetchHomeSideBar(sort));
     /* dispatch(FetchSubredditSideBar("r/motivation", sort)); */
   }, [subreddit, sort, dispatch]);

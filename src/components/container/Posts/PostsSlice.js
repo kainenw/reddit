@@ -9,8 +9,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const FetchHomePosts = createAsyncThunk(
   "posts/FetchHomePosts",
   async (sort) => {
-    const endpoint = "https://www.reddit.com/" + sort + ".json?";
     console.log(sort);
+    const endpoint = "https://www.reddit.com/" + sort + ".json?";
+    console.log(endpoint);
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
@@ -19,11 +20,8 @@ export const FetchHomePosts = createAsyncThunk(
 
 export const FetchSearchPosts = createAsyncThunk(
   "posts/FetchSearchPosts",
-  async (searchTerm /* sort */) => {
-    /* console.log(sort) */
-    console.log(searchTerm);
-    const endpoint =
-      "https://www.reddit.com/search.json?q=" + searchTerm; /* + "&" + sort  */
+  async (params) => {
+    const endpoint = "https://www.reddit.com/search.json?q=" + params;
     console.log(endpoint);
     const result = await fetch(endpoint);
     const json = await result.json();
@@ -33,9 +31,9 @@ export const FetchSearchPosts = createAsyncThunk(
 
 export const FetchSubredditPosts = createAsyncThunk(
   "posts/setSubredditPosts",
-  async (subreddit, sort) => {
+  async (params) => {
     const endpoint =
-      "https://www.reddit.com/" + subreddit + ".json?"; /* &" + sort */
+      "https://www.reddit.com/r/" + params 
     console.log(endpoint);
     const result = await fetch(endpoint);
     const json = await result.json();
@@ -85,9 +83,11 @@ const options = {
       state.isLoaded = true;
       state.posts = action.payload;
     });
-    builder.addCase(FetchSearchPosts.rejected, (state) => {
+    builder.addCase(FetchSearchPosts.rejected, (state, action) => {
       state.isLoading = false;
       state.hasError = true;
+      state.error = action.payload;
+      state.isLoaded = false;
     });
     builder.addCase(FetchSubredditPosts.pending, (state) => {
       state.isLoading = true;
@@ -99,9 +99,11 @@ const options = {
       state.isLoaded = true;
       state.posts = action.payload;
     });
-    builder.addCase(FetchSubredditPosts.rejected, (state) => {
+    builder.addCase(FetchSubredditPosts.rejected, (state, action) => {
       state.isLoading = false;
       state.hasError = true;
+      state.error = action.payload;
+      state.isLoaded = false;
     });
   },
 };

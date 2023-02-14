@@ -23,6 +23,7 @@ const Post = (props) => {
             <source src={props.media} type="video/mp4" />
           </video>
         )}
+        {props.hasLink && <a href={post.url}>{post.domain}</a> }
         {post.selftext && <p id="text">{post.selftext}</p>}
       </div>
     </div>

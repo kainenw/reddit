@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,600;1,200;1,400&family=Roboto&display=swap");
 * {
+ /*  all: unset; //this is ideal, rewrite css so that this can work*/
   -webkit-font-smoothing: antialiased;
 }
 
@@ -39,7 +40,7 @@ span {
   color: #850012;
 }
 
-input {
+#search {
   color: black;
   display: inline-block;
   position: absolute;
@@ -61,7 +62,7 @@ main {
 #sidebar {
   grid-area: 2/1/2/1;
   background-color: #995961;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 2rem;
   margin-bottom: 0.5rem;
   max-width: 100%;
@@ -102,7 +103,7 @@ h4 {
   margin-bottom: 0.5rem;
   float: left;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 15px;
   display: flexbox;
   flex-direction: column;
 }
@@ -122,8 +123,7 @@ h4 {
   text-align: center;
 }
 
-#text,
-#image {
+#text {
   padding-bottom: 1rem;
 }
 
@@ -131,8 +131,12 @@ h4 {
   padding: 1rem;
 }
 
-#image {
+#image,
+#video {
   width: 100%;
+  border-radius: 0 0 15px 15px;
+  position: relative;
+  bottom: -6px;
 }
 
 @media (max-width: 390px) {

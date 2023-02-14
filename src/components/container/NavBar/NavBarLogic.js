@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectSearchTerm, setSearchTerm } from "./SearchBarSlice.js";
-import SearchBar from "../../presentation/SearchBar.js";
+import { selectSearchTerm, setSearchTerm, setSort } from "./NavBarSlice";
+import NavBar from "../../presentation/NavBar";
 
-const SearchBarLogic = () => {
+const NavBarLogic = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -14,9 +14,15 @@ const SearchBarLogic = () => {
     navigate("/search/" + value);
   };
 
+  const handleClick = (event) => {
+    const value = event.target.value;
+    console.log(value)
+    dispatch(setSort(value))
+  }
+
   const searchTerm = useSelector(selectSearchTerm);
 
-  return <SearchBar searchTerm={searchTerm} handleChange={handleChange} />;
+  return <NavBar searchTerm={searchTerm} handleChange={handleChange} handleClick={handleClick} />;
 };
 
-export default SearchBarLogic;
+export default NavBarLogic;

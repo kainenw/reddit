@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchBar from "../components/container/SearchBar/SearchBarSlice.js";
+import NavBar from "../components/container/NavBar/NavBarSlice.js";
 import posts from "../components/container/Posts/PostsSlice.js";
 import sideBar from "../components/container/SideBar/SideBarSlice.js";
 
 const reducers = {
   reducer: {
-    searchBar: searchBar,
+    NavBar: NavBar,
     posts: posts,
     sideBar: sideBar,
   },

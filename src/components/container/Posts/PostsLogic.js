@@ -17,26 +17,34 @@ const postsLogic = (props) => {
   //let posts = postobjects(rawData)
 
   const callback = (item, i) => {
+    const data = item.data;
     let media;
-    let image = item.data.url_overridden_by_dest;
+    let image = data.url_overridden_by_dest;
     let hasImage;
-    let hasVideo = item.data.is_video;
+    let hasVideo = data.is_video;
+    let hasLink = data.post_hint == "link";
+    let link;
     if (image) {
       hasImage = image.includes(".jpg") || image.includes(".png");
       media = image;
     }
     if (hasVideo) {
-      media = item.data.media.reddit_video.fallback_url;
+      media = data.media.reddit_video.fallback_url;
     }
-    const subreddit = item.data.subreddit_name_prefixed;
+    if (hasLink) {
+      link = data.url;
+    }
+    const subreddit = data.subreddit_name_prefixed;
 
     return (
       <Post
-        post={item.data}
+        post={data}
         media={media}
         hasImage={hasImage}
         hasVideo={hasVideo}
         subreddit={subreddit}
+        hasLink={hasLink}
+        link={link}
         key={i}
       />
     );

@@ -14,8 +14,8 @@ export const FetchHomeSideBar = createAsyncThunk(
 
 export const FetchSearchSideBar = createAsyncThunk(
   "search/setSearchSideBar",
-  async (searchTerm, sort) => {
-    const endpoint = "https://www.reddit.com/search/" + searchTerm + ".json?";
+  async (searchTerm) => {
+    const endpoint ="https://www.reddit.com/subreddits/search.json?q=" + searchTerm;
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
@@ -24,9 +24,8 @@ export const FetchSearchSideBar = createAsyncThunk(
 
 export const FetchSubredditSideBar = createAsyncThunk(
   "post/setSubredditSideBar",
-  async (subreddit, sort) => {
-    const endpoint =
-      "https://www.reddit.com" + subreddit + "/about.json?" + sort;
+  async (subreddit) => {
+    const endpoint = "https://www.reddit.com/r/" + subreddit + "/about.json?";
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
@@ -68,10 +67,11 @@ export const popularSubreddits = [
 const option = {
   name: "sideBar",
   initialState: {
-    list: popularSubreddits,
+    list: null,
     isLoading: false,
     hasError: false,
     error: {},
+    raw: null,
     isLoaded: false,
   },
   reducers: {
@@ -89,7 +89,7 @@ const option = {
       .addCase(FetchHomeSideBar.fulfilled, (state, action) => {
         state.isLoading = true;
         state.hasError = false;
-        state.raw = action.payload;
+        state.list = popularSubreddits;
         state.isLoaded = true;
       })
       .addCase(FetchHomeSideBar.rejected, (state, action) => {
@@ -109,10 +109,11 @@ const option = {
         state.raw = action.payload;
         state.isLoaded = true;
       })
-      .addCase(FetchSearchSideBar.rejected, (state) => {
+      .addCase(FetchSearchSideBar.rejected, (state, action) => {
         state.isLoading = false;
         state.hasError = true;
         state.isLoaded = false;
+        state.error = action.payload;
       })
       .addCase(FetchSubredditSideBar.pending, (state) => {
         state.isLoading = true;
@@ -125,10 +126,11 @@ const option = {
         state.isLoaded = true;
         state.raw = action.payload;
       })
-      .addCase(FetchSubredditSideBar.rejected, (state) => {
+      .addCase(FetchSubredditSideBar.rejected, (state,action) => {
         state.isLoading = false;
         state.hasError = true;
         state.isLoaded = false;
+        state.error = action.payload;
       });
   },
 };

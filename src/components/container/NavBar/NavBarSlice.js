@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const option = {
-  name: "searchBar",
+  name: "NavBar",
   initialState: {
     searchTerm: "",
     sort: "top",
@@ -19,11 +19,11 @@ const option = {
   },
 };
 
-const searchBar = createSlice(option);
+const NavBar = createSlice(option);
 
 export const selectSearchTerm = (state) => state.searchTerm;
 export const selectSort = (state) => state.sort;
 
-export const { setSearchTerm, setSort } = searchBar.actions;
+export const { setSearchTerm, setSort } = NavBar.actions;
 
-export default searchBar.reducer;
+export default NavBar.reducer;

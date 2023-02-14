@@ -4,26 +4,17 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  NavLink,
 } from "react-router-dom";
 import HomePage from "../components/container/Pages/HomePage";
 import SearchPage from "../components/container/Pages/SearchPage";
-import SearchBarLogic from "../components/container/SearchBar/SearchBarLogic";
+import NavBarLogic from "../components/container/NavBar/NavBarLogic";
 import SubredditPage from "../components/container/Pages/SubredditPage";
 import TitleBar from "../components/presentation/TitleBar";
 
 const App = (props) => {
   return (
     <Router>
-      <header>
-        <h1>
-          <NavLink id="home-button" to="/" replace={true}>
-            <span>Red</span>dit
-          </NavLink>
-        </h1>
-        <SearchBarLogic />
-        {/* <TitleBar /> */}
-      </header>
+      <NavBarLogic />
       <Routes>
         <Route path="/search/:searchTerm" element={<SearchPage />} />
         <Route path="/r/:subreddit" element={<SubredditPage />} />

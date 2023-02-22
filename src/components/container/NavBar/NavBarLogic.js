@@ -8,21 +8,28 @@ const NavBarLogic = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleChange = (event) => {
+  const handleSearchChange = (event) => {
     const value = event.target.value;
     dispatch(setSearchTerm(value));
     navigate("/search/" + value);
   };
 
-  const handleClick = (event) => {
+  const handleSortChange = (event) => {
+    event.preventDefault();
     const value = event.target.value;
-    console.log(value)
-    dispatch(setSort(value))
-  }
+    console.log(value);
+    dispatch(setSort(value));
+  };
 
   const searchTerm = useSelector(selectSearchTerm);
 
-  return <NavBar searchTerm={searchTerm} handleChange={handleChange} handleClick={handleClick} />;
+  return (
+    <NavBar
+      searchTerm={searchTerm}
+      handleSearchChange={handleSearchChange}
+      handleSortChange={handleSortChange}
+    />
+  );
 };
 
 export default NavBarLogic;

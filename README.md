@@ -1,4 +1,5 @@
 # Reddit Client
+  This is a single-page application which is primarily built with React and Redux.
 
 ## Wireframes
 ![Alt text](wireframe.jpeg)
@@ -11,6 +12,8 @@
 ### React
 
 ### Redux
+
+### JSS
 
 
 

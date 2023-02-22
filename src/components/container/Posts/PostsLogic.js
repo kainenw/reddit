@@ -7,14 +7,20 @@ const postsLogic = (props) => {
   // filter posts in the selector method
   const posts = useSelector((state) => state.posts.posts.data.children);
   const isLoaded = useSelector((state) => state.posts.isLoaded);
-  /* if (posts) {
-    posts = posts.map(postobjects)
-    console.log("number of posts:" + posts.length)
-  } */
 
   //for testing
   //let rawData = posts.raw
   //let posts = postobjects(rawData)
+
+  // bottom of list put a button that takes you to top OR takes you to the next page of results
+  var handleClick = () => {
+    window.scroll(0,0);
+  };
+
+  const handlePostClick = (event) => {
+    const post = event.target 
+    post.style.gridArea = "1/2/2/2"
+  }
 
   const callback = (item, i) => {
     const data = item.data;
@@ -35,6 +41,9 @@ const postsLogic = (props) => {
       link = data.url;
     }
     const subreddit = data.subreddit_name_prefixed;
+    const commentsNum = data.num_comments
+    const upvotes = data.ups
+
 
     return (
       <Post
@@ -45,6 +54,9 @@ const postsLogic = (props) => {
         subreddit={subreddit}
         hasLink={hasLink}
         link={link}
+        commentsNum={commentsNum}
+        upvotes={upvotes}
+        handlePostClick={handlePostClick}
         key={i}
       />
     );
@@ -52,7 +64,8 @@ const postsLogic = (props) => {
 
   return (
     <div id="posts" className="column">
-      {isLoaded ? posts.map(callback) : <h3>LOADING</h3>}
+      {isLoaded ? posts.map(callback) : <div class="loader"></div>}
+      <button onClick={handleClick}>return to top</button>
     </div>
   );
 };

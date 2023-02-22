@@ -9,27 +9,18 @@ const NavBar = (props) => {
           <span>Red</span>dit{" "}
         </h1>
       </NavLink>
-      <form id="sort" onClick={props.handleClick}>
-        <div>
-          <input type="radio" id="hot" name="sort" value="hot" />
-          <label for="hot">Hot</label>
-        </div>
-        <div>
-        <input type="radio" id="new" name="sort" value="new" />
-          <label for="new">New</label>
-          </div>
-        <div>
-          <input type="radio" id="top" name="sort" value="top" />
-          <label for="top">Top</label>
-        </div>
-      </form>
+      <label></label>
+      <select name="sort" id="sort" onChange={props.handleSortChange}>
+        <option value="top">Top</option>
+        <option value="hot">Hot</option>
+        <option value="new">New</option>
+      </select>
 
-      <form onSubmit={(event) => event.preventDefault()}>
-        <inputs
-          onChange={props.handleChange}
+      <form id="search" onSubmit={(event) => event.preventDefault()}>
+        <input
+          onChange={props.handleSearchChange}
           className="search"
           type="text"
-          id="search"
           value={props.searchTerm}
           placeholder={"Search"}
         />

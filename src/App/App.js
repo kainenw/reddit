@@ -10,17 +10,20 @@ import SearchPage from "../components/container/Pages/SearchPage";
 import NavBarLogic from "../components/container/NavBar/NavBarLogic";
 import SubredditPage from "../components/container/Pages/SubredditPage";
 import TitleBar from "../components/presentation/TitleBar";
+import ErrorBoundary from "./ErrorBoundry";
 
 const App = (props) => {
   return (
-    <Router>
-      <NavBarLogic />
-      <Routes>
-        <Route path="/search/:searchTerm" element={<SearchPage />} />
-        <Route path="/r/:subreddit" element={<SubredditPage />} />
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <NavBarLogic />
+        <Routes>
+          <Route path="/search/:searchTerm" element={<SearchPage />} />
+          <Route path="/r/:subreddit" element={<SubredditPage />} />
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </ErrorBoundary>
   );
 };
 

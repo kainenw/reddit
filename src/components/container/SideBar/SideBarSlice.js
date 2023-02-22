@@ -4,8 +4,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const FetchHomeSideBar = createAsyncThunk(
   "search/setHomeSideBar",
-  async (sort) => {
-    const endpoint = "https://www.reddit.com/" + sort + ".json?";
+  async () => {
+    const endpoint = "https://www.reddit.com/subreddits/popular.json?";
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
@@ -25,16 +25,18 @@ export const FetchSearchSideBar = createAsyncThunk(
 export const FetchSubredditSideBar = createAsyncThunk(
   "post/setSubredditSideBar",
   async (subreddit) => {
-    const endpoint = "https://www.reddit.com/r/" + subreddit + "/about.json?";
+    const endpoint = "https://www.reddit.com/" + subreddit + ".json?";
+    console.log(endpoint)
     const result = await fetch(endpoint);
     const json = await result.json();
+    console.log(json)
     return json;
   }
 );
 
 // T-63 hook up thunks
 
-export const popularSubreddits = [
+/* export const popularSubreddits = [
   "r/pics",
   "r/wallstreetbets",
   "r/news",
@@ -60,7 +62,7 @@ export const popularSubreddits = [
   "r/news",
   "r/memes",
   "r/pics",
-];
+]; */
 
 /* const techSubreddits = {data: { children: ["/r/Technology", "/r/AskTechnology", "/r/Futurology", "/r/KeepOurNetFree ", "/r/pirateparty ", "/r/privacy", "/r/Gadgets", "/r/Hardware", "/r/Tech", "/r/Technews", "/r/Realtech", "/r/InternetIsBeautiful ", "/r/RenewableEnergy", "/r/SelfDrivingCars", "/r/TechSupport", "/r/TalesFromTechSupport", "/r/TechSupportGore", "/r/TechnologyPorn", "/r/ImaginaryTechnology", "/r/Programming", "/r/Learnprogramming", "/r/CScareerquestions", "/r/CompSci", "/r/NetSec", "/r/Engineering", "/r/Hacking", "/r/Software"]}} */
 
@@ -71,13 +73,12 @@ const option = {
     isLoading: false,
     hasError: false,
     error: {},
-    raw: null,
     isLoaded: false,
   },
   reducers: {
-    setHomeSideBar: (state) => {
+    /* setHomeSideBar: (state) => {
       state.list = popularSubreddits;
-    },
+    }, */
   },
   extraReducers: (builder) => {
     builder
@@ -89,7 +90,7 @@ const option = {
       .addCase(FetchHomeSideBar.fulfilled, (state, action) => {
         state.isLoading = true;
         state.hasError = false;
-        state.list = popularSubreddits;
+        state.list = action.payload;
         state.isLoaded = true;
       })
       .addCase(FetchHomeSideBar.rejected, (state, action) => {
@@ -106,7 +107,7 @@ const option = {
       .addCase(FetchSearchSideBar.fulfilled, (state, action) => {
         state.isLoading = false;
         state.hasError = false;
-        state.raw = action.payload;
+        state.list = action.payload;
         state.isLoaded = true;
       })
       .addCase(FetchSearchSideBar.rejected, (state, action) => {
@@ -124,7 +125,7 @@ const option = {
         state.isLoading = true;
         state.hasError = false;
         state.isLoaded = true;
-        state.raw = action.payload;
+        state.list = action.payload;
       })
       .addCase(FetchSubredditSideBar.rejected, (state,action) => {
         state.isLoading = false;
@@ -139,6 +140,6 @@ const sideBar = createSlice(option);
 
 export const selectSideBar = (state) => state.list;
 
-export const { setHomeSideBar } = sideBar.actions;
+/* export const { setHomeSideBar } = sideBar.actions; */
 
 export default sideBar.reducer;

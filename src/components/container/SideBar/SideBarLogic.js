@@ -6,28 +6,23 @@ import { Link } from "react-router-dom";
 
 export const SideBarLogic = (props) => {
   let list = useSelector((state) => state.sideBar.list);
-  let raw = useSelector((state) => state.sideBar.raw);
-
-  console.log(raw)
-  useEffect(() => {
-    if (raw !== null & raw !== {}) {
-      list =[]
-      raw.data.children.map((item) =>
-        list.push(item.data.subreddit_name_prefixed)
-      );
-    } 
-  }, [raw]);
+  console.log(list)
   
   const callback = (item, i) => {
+    if (props.page == "subreddit" && i == 0) {
+      return;
+    }
+    const subreddit = item.data.display_name_prefixed;
+    console.log(subreddit)
     return (
       <div>
         <Link
-          to={"../" + item}
+          to={"../" + subreddit}
           key={i}
           replace={true}
           className="sidebar-subreddit"
         >
-          {item}
+          {subreddit}
         </Link>
       </div>
     );
@@ -35,8 +30,8 @@ export const SideBarLogic = (props) => {
 
   return (
     <div id="sidebar" className="column">
-      <h4>Popular Subreddits</h4>
-      {list ? list.map(callback) : <h1> LOADING</h1>}
+      {props.page == "home" ? <h4>Popular Subreddits</h4> : <h4>Related Subreddits</h4>}
+      {list ? list.data.children.map(callback) : <div class="loader"></div>}
     </div>
   );
 };

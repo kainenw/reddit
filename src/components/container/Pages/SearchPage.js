@@ -9,7 +9,6 @@ import { FetchSearchSideBar } from "../SideBar/SideBarSlice";
 const SearchPage = () => {
   const sort = useSelector((state) => state.NavBar.sort);
   const searchTerm = useSelector((state) => state.NavBar.searchTerm);
-  console.log(sort);
 
   const dispatch = useDispatch();
 

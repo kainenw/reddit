@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchHomePosts } from "../Posts/PostsSlice";
-import { setHomeSideBar } from "../SideBar/SideBarSlice";
+import { FetchHomeSideBar } from "../SideBar/SideBarSlice";
 import PostsLogic from "../Posts/PostsLogic";
 import SideBarLogic from "../SideBar/SideBarLogic";
 
 const HomePage = () => {
   const sort = useSelector((state) => state.NavBar.sort);
-  const searchTerm = useSelector((state) => state.NavBar.searchTerm);
 
   /* var docWidth = document.documentElement.offsetWidth;
 
@@ -20,7 +19,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(FetchHomePosts(sort));
-    dispatch(setHomeSideBar());
+    dispatch(FetchHomeSideBar());
   }, [sort, dispatch]);
 
   return (

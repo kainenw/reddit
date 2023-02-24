@@ -7,15 +7,7 @@ import SideBarLogic from "../SideBar/SideBarLogic";
 
 const HomePage = () => {
   const sort = useSelector((state) => state.NavBar.sort);
-
-  /* var docWidth = document.documentElement.offsetWidth;
-
-  [].forEach.call(document.querySelectorAll("*"), function(el) {
-    if (el.offsetWidth > docWidth) {
-      console.log(el);
-    }
-  }); */
-
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(FetchHomePosts(sort));

@@ -9,9 +9,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const FetchHomePosts = createAsyncThunk(
   "posts/FetchHomePosts",
   async (sort) => {
-    console.log(sort);
     const endpoint = "https://www.reddit.com/" + sort + ".json?";
-    console.log(endpoint);
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
@@ -22,7 +20,6 @@ export const FetchSearchPosts = createAsyncThunk(
   "posts/FetchSearchPosts",
   async (params) => {
     const endpoint = "https://www.reddit.com/search.json?q=" + params;
-    console.log(endpoint);
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;
@@ -33,8 +30,7 @@ export const FetchSubredditPosts = createAsyncThunk(
   "posts/setSubredditPosts",
   async (params) => {
     const endpoint =
-      "https://www.reddit.com/r/" + params 
-    console.log(endpoint);
+      "https://www.reddit.com/r/" + params
     const result = await fetch(endpoint);
     const json = await result.json();
     return json;

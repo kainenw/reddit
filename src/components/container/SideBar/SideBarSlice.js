@@ -26,10 +26,8 @@ export const FetchSubredditSideBar = createAsyncThunk(
   "post/setSubredditSideBar",
   async (subreddit) => {
     const endpoint = "https://www.reddit.com/" + subreddit + ".json?";
-    console.log(endpoint)
     const result = await fetch(endpoint);
     const json = await result.json();
-    console.log(json)
     return json;
   }
 );

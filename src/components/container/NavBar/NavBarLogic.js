@@ -18,7 +18,6 @@ const NavBarLogic = () => {
   const handleSortChange = (event) => {
     event.preventDefault();
     const value = event.target.value;
-    console.log(value);
     dispatch(setSort(value));
   };
 
@@ -28,14 +27,11 @@ const NavBarLogic = () => {
     const value = event.target.value;
     root.style.setProperty("--accent", value);
     const navBarMenus = document.body.getElementsByClassName("navbar-menus");
-    console.log(navBarMenus);
     const isYellow = value === "#DECF00" || value === "#4BAB33";
     const newTextColor = isYellow ? "black" : "white";
-    console.log(isYellow)
     const icon = document.getElementById("icon");
     icon.style.filter = isYellow ? "invert(1)" : "invert(0)";
     for (let item of navBarMenus) {
-      console.log(newTextColor);
       item.style.color = newTextColor;
       item.style.border = "1px solid " + newTextColor;
     }

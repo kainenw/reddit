@@ -23,18 +23,12 @@ const postsLogic = (props) => {
   };
 
   const handlePostClick = (post) => {
-    console.log(post);
     const id = post.id;
     dispatch(setPrimaryData(post));
     dispatch(FetchComments(id));
     navigate("/post/" + id);
   };
 
-  /*   const doc = document.body
-  const PostObjects = doc.getElementById("unexpanded")
-  console.log(PostObjects)
- */
-  
   const callback = (item, i) => {
     // make all these one object
     const data = item.data;
@@ -67,7 +61,6 @@ const postsLogic = (props) => {
 
     return <Post post={post} handlePostClick={handlePostClick} key={i} />;
   };
-  console.log(posts)
   return (
     <div id="posts" className="column">
       {isLoaded ? posts.map(callback) : <div class="loader"></div>}

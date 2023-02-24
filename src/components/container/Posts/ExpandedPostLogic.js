@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import ExpandedPost from "../../presentation/ExpandedPost";
 import Comment from "../../presentation/Comment";
 
 const ExpandedPostLogic = (props) => {
   // filter posts in the selector method
-  const post = props.post
-  const comments = props.comments
+  const post = useSelector((state) => state.posts.expanded);
+  const comments = useSelector((state) => state.posts.expanded.comments[1]);
 
   /* const convertUTC = (utc) => {
     const unixTimestamp = props.post.utc_created;
@@ -15,14 +16,14 @@ const ExpandedPostLogic = (props) => {
     const date = javascriptTimestamp.getDate();
     return `${month}-${date}-${year}`;
   }; */
-
+  
   let length;
   if (comments) {
     length = comments.data.children.length;
   }
 
   const processComment = (item, i) => {
-    if (i && i > length) {
+    if (i && i < length) {
       const data = item.data;
       const obj = {
         user: data.author,

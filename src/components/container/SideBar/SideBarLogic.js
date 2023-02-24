@@ -6,14 +6,12 @@ import { Link } from "react-router-dom";
 
 export const SideBarLogic = (props) => {
   let list = useSelector((state) => state.sideBar.list);
-  console.log(list)
-  
+
   const callback = (item, i) => {
     if (props.page === "subreddit" && i === 0) {
       return;
     }
     const subreddit = item.data.display_name_prefixed;
-    console.log(subreddit)
     return (
       <div>
         <Link

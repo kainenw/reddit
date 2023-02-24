@@ -29,7 +29,7 @@ const NavBarLogic = () => {
     root.style.setProperty("--accent", value);
     const navBarMenus = document.body.getElementsByClassName("navbar-menus");
     console.log(navBarMenus);
-    const isYellow = value == "#DECF00" || value == "#4BAB33";
+    const isYellow = value === "#DECF00" || value === "#4BAB33";
     const newTextColor = isYellow ? "black" : "white";
     console.log(isYellow)
     const icon = document.getElementById("icon");
@@ -42,8 +42,6 @@ const NavBarLogic = () => {
   };
 
   const handleDarkLightClick = (event) => {
-    const main = document.querySelector("main");
-    
     if (!isDark) {
       root.style.setProperty("--background", "black");
       root.style.setProperty("--presentation", "#292929");

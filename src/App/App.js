@@ -5,7 +5,6 @@ import HomePage from "../components/container/Pages/HomePage";
 import SearchPage from "../components/container/Pages/SearchPage";
 import NavBarLogic from "../components/container/NavBar/NavBarLogic";
 import SubredditPage from "../components/container/Pages/SubredditPage";
-import TitleBar from "../components/presentation/TitleBar";
 import ErrorBoundary from "./ErrorBoundry";
 import PostPage from "../components/container/Pages/PostPage";
 

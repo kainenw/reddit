@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export const SideBarLogic = (props) => {
   console.log(list)
   
   const callback = (item, i) => {
-    if (props.page == "subreddit" && i == 0) {
+    if (props.page === "subreddit" && i === 0) {
       return;
     }
     const subreddit = item.data.display_name_prefixed;
@@ -31,7 +31,7 @@ export const SideBarLogic = (props) => {
   return (
     <div id="sidebar-container" className="column">
       <div id="sidebar" className="presentation">
-        {props.page == "home" ? (
+        {props.page === "home" ? (
           <h4>Popular Subreddits</h4>
         ) : (
           <h4>Related Subreddits</h4>

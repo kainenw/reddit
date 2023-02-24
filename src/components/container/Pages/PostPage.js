@@ -1,10 +1,13 @@
-import React, { useEffect, useSyncExternalStore } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import ExpandedPostLogic from "../Posts/ExpandedPostLogic";
+import { useSelector } from "react-redux";
 
 const PostPage = () => {
-  const sort = useSelector((state) => state.NavBar.sort);
-  const expanded = useSelector((state) => state.posts.expanded)
+  const post = useSelector((state) => state.posts.expanded);
+  const comments = useSelector((state) => state.posts.expanded.comments[1]);
+  
+  /* const sort = useSelector((state) => state.NavBar.sort);
+  const expanded = useSelector((state) => state.posts.expanded) */
 
 /*   const dispatch = useDispatch();
   useEffect(() => {
@@ -15,7 +18,7 @@ const PostPage = () => {
 
   return (
     <main id="expanded">
-      <ExpandedPostLogic />
+      <ExpandedPostLogic post={post} comments={comments} />
     </main>
   );
 };

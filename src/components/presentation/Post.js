@@ -13,8 +13,7 @@ const Post = (props) => {
         <p id="user">
           <Link id="subreddit" to={"../" + post.subreddit} replace={true}>
             {post.subreddit}
-          </Link>  - 
-          {"u/" + post.author}
+          </Link>
         </p>
       </div>
       <div id="post-body">

@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Post from "../../presentation/Post";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FetchComments, setPrimaryData } from "./PostsSlice";
 
@@ -43,11 +42,9 @@ const postsLogic = (props) => {
       data: data,
       image: data.url_overridden_by_dest,
       hasImage: null,
-      image: data.url_overridden_by_dest,
-      hasImage: null,
       media: null,
       hasVideo: data.is_video,
-      hasLink: data.post_hint == "link",
+      hasLink: data.post_hint === "link",
       link: null,
       subreddit: data.subreddit_name_prefixed,
       commentsNum: data.num_comments,

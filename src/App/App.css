@@ -151,6 +151,7 @@ main#expanded {
 
 .navbar-menus {
   color: white;
+  cursor: pointer;
   border: 1px white solid;
   background-color:var(--post);
   height: 1.5rem;
@@ -229,7 +230,6 @@ h4#title {
   right: 1rem;
   float: right;
 }
-
 
 #text {
   padding: 1rem;

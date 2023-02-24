@@ -1,12 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Post from "../../presentation/Post";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { FetchComments, setPrimaryData } from "./PostsSlice";
 
 const postsLogic = (props) => {
   // filter posts in the selector method
   const posts = useSelector((state) => state.posts.posts.data.children);
   const isLoaded = useSelector((state) => state.posts.isLoaded);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   //for testing
   //let rawData = posts.raw
@@ -14,54 +20,57 @@ const postsLogic = (props) => {
 
   // bottom of list put a button that takes you to top OR takes you to the next page of results
   var handleClick = () => {
-    window.scroll(0,0);
+    window.scroll(0, 0);
   };
 
-  const handlePostClick = (event) => {
-    const post = event.target 
-    post.style.gridArea = "1/2/2/2"
-  }
+  const handlePostClick = (post) => {
+    console.log(post);
+    const id = post.id;
+    dispatch(setPrimaryData(post));
+    dispatch(FetchComments(id));
+    navigate("/post/" + id);
+  };
 
+  /*   const doc = document.body
+  const PostObjects = doc.getElementById("unexpanded")
+  console.log(PostObjects)
+ */
+  
   const callback = (item, i) => {
+    // make all these one object
     const data = item.data;
-    let media;
-    let image = data.url_overridden_by_dest;
-    let hasImage;
-    let hasVideo = data.is_video;
-    let hasLink = data.post_hint == "link";
-    let link;
-    if (image) {
-      hasImage = image.includes(".jpg") || image.includes(".png");
-      media = image;
+    let post = {
+      data: data,
+      image: data.url_overridden_by_dest,
+      hasImage: null,
+      image: data.url_overridden_by_dest,
+      hasImage: null,
+      media: null,
+      hasVideo: data.is_video,
+      hasLink: data.post_hint == "link",
+      link: null,
+      subreddit: data.subreddit_name_prefixed,
+      commentsNum: data.num_comments,
+      score: data.score,
+      id: data.id,
+      author: data.author,
+      title: data.title,
+      selftext: data.selftext,
+    };
+    if (post.image) {
+      post.hasImage =
+        post.image.includes(".jpg") || post.image.includes(".png");
+      post.media = post.image;
+    }else if (post.hasVideo) {
+      post.media = data.media.reddit_video.fallback_url;
     }
-    if (hasVideo) {
-      media = data.media.reddit_video.fallback_url;
+    if (post.hasLink) {
+      post.link = data.url;
     }
-    if (hasLink) {
-      link = data.url;
-    }
-    const subreddit = data.subreddit_name_prefixed;
-    const commentsNum = data.num_comments
-    const upvotes = data.ups
 
-
-    return (
-      <Post
-        post={data}
-        media={media}
-        hasImage={hasImage}
-        hasVideo={hasVideo}
-        subreddit={subreddit}
-        hasLink={hasLink}
-        link={link}
-        commentsNum={commentsNum}
-        upvotes={upvotes}
-        handlePostClick={handlePostClick}
-        key={i}
-      />
-    );
+    return <Post post={post} handlePostClick={handlePostClick} key={i} />;
   };
-
+  console.log(posts)
   return (
     <div id="posts" className="column">
       {isLoaded ? posts.map(callback) : <div class="loader"></div>}

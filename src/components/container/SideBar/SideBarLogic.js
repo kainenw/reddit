@@ -29,9 +29,15 @@ export const SideBarLogic = (props) => {
   };
 
   return (
-    <div id="sidebar" className="column">
-      {props.page == "home" ? <h4>Popular Subreddits</h4> : <h4>Related Subreddits</h4>}
-      {list ? list.data.children.map(callback) : <div class="loader"></div>}
+    <div id="sidebar-container" className="column">
+      <div id="sidebar" className="presentation">
+        {props.page == "home" ? (
+          <h4>Popular Subreddits</h4>
+        ) : (
+          <h4>Related Subreddits</h4>
+        )}
+        {list ? list.data.children.map(callback) : <div class="loader"></div>}
+      </div>
     </div>
   );
 };

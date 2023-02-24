@@ -20,8 +20,8 @@ const SubredditPage = () => {
   }, [subreddit, sort, dispatch]);
 
   return (
-    <main>
-      <h4>{"r/" + subreddit}</h4>
+    <main id="unexpanded">
+      <h4 id="title">{"r/" + subreddit}</h4>
       <PostsLogic page="subreddit" />
       <SideBarLogic page="subreddit" />
     </main>

@@ -18,8 +18,8 @@ const SearchPage = () => {
   }, [dispatch, searchTerm, sort]);
 
   return (
-    <main>
-      <h4>Showing results for: {searchTerm}</h4>
+    <main id="unexpanded">
+      <h4 id="title">Showing results for: {searchTerm}</h4>
       <SideBarLogic page="search" />
       <PostsLogic page="search" />
     </main>

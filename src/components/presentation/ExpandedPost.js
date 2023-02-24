@@ -1,21 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
-const Post = (props) => {
-  const post = props.post;
-  const handlePostClick = () => {
-    props.handlePostClick(post);
-  };
+const ExpandedPost = (props) => {
+  const post = props.post.primaryData;
+
   return (
-    <div className="unexpanded post presentation" onClick={handlePostClick}>
+    <div className="post expanded presentation">
       <div id="title-bar">
         <h3 id="title">{post.title}</h3>
-        <p id="user">
-          <Link id="subreddit" to={"../" + post.subreddit} replace={true}>
-            {post.subreddit}
-          </Link>  - 
-          {"u/" + post.author}
-        </p>
+        <p id="user">{"u/" + post.author}</p>
+        <Link id="subreddit" to={"../" + post.subreddit} replace={true}>
+          {post.subreddit}
+        </Link>
       </div>
       <div id="post-body">
         {post.hasImage && <img src={post.media} alt={post.title} id="image" />}
@@ -35,4 +32,4 @@ const Post = (props) => {
   );
 };
 
-export default Post;
+export default ExpandedPost;

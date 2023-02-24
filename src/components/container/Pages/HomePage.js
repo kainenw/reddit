@@ -23,8 +23,8 @@ const HomePage = () => {
   }, [sort, dispatch]);
 
   return (
-    <main>
-      <h4>{sort} posts</h4>
+    <main id="unexpanded">
+      <h4 id="title">{sort} posts</h4>
       <PostsLogic page="home" />
       <SideBarLogic page="home" />
     </main>

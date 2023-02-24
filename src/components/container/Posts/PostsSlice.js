@@ -41,6 +41,16 @@ export const FetchSubredditPosts = createAsyncThunk(
   }
 );
 
+export const FetchComments = createAsyncThunk(
+  "posts/FetchComments",
+  async (params) => {
+    const endpoint = "https://www.reddit.com/" + params + ".json?top"; 
+    const result = await fetch(endpoint)
+    const json = await result.json()
+    return json
+  }
+)
+
 const options = {
   name: "posts",
   initialState: {
@@ -53,8 +63,16 @@ const options = {
     hasError: false,
     isLoaded: false,
     error: {},
+    expanded: {
+      primaryData: {},
+      comments: {}
+    }
   },
-  reducers: {},
+  reducers: {
+    setPrimaryData: (state, action) => {
+      state.expanded.primaryData = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(FetchHomePosts.pending, (state) => {
       state.isLoading = true;
@@ -105,11 +123,29 @@ const options = {
       state.error = action.payload;
       state.isLoaded = false;
     });
-  },
+    builder.addCase(FetchComments.pending, (state) => {
+      state.isLoading = true;
+      state.hasError = false;
+    });
+    builder.addCase(FetchComments.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.hasError = false;
+      state.isLoaded = true;
+      state.expanded.comments = action.payload;
+    });
+    builder.addCase(FetchComments.rejected, (state, action) => {
+      state.isLoading = false;
+      state.hasError = true;
+      state.error = action.payload;
+      state.isLoaded = false;
+    });
+  }
 };
 
 const posts = createSlice(options);
 
 export const selectPosts = (state) => state.posts;
+
+export const {setPrimaryData} = posts.actions
 
 export default posts.reducer;

@@ -1,34 +1,11 @@
-# Reddit Client
-  This is a single-page application which is built with React and Redux. It allows the user to browse the reddit homepage, search for posts and subreddits, go to subreddit pages, and view post comments. It is compatable with all kinds of media present in reddit posts, being able to display whichever are necessary.
+# Reddit Browser
 
-<!-- ## Wireframes
-![Alt text](wireframe.jpeg) -->
+Streamlined Reddit browsing experience for improved efficiency and enjoyment, built with React and Redux.
 
-## Color Theme
+## Overview
 
-The color theme is gray, white and blue, but can be changed by the user. 
-
-## Technologies used
-
-### Reddit API
-
-All data in this app is fetched from one of Reddit's two APIs. The data is fetched according to the url and the actions of the user.
-
-### React
-
-All components are function components built with React. 
-
-### Redux
-
-React-Redux is used to manage state in this app. The main states are "posts", "navBar", and "sidebar". The states store the data received from the reddit
-
-### React Router
-
-React Router is used to manage page navigation. There are four different pages, home, search, subreddit and expanded post. According to the URL, these different pages are rendered and appropriate data is fetched for them.
-
-### CSS-in-JS
-
-In order for the user to change the app's color, CSS-in-JS is used to allow buttons and drop down menus to alter the app's appearancce.
+* **Brief Description:** Experience Reddit like never before with this sleek single-page application built using React and Redux. Effortlessly navigate Reddit's homepage, search for your favorite posts and subreddits, delve into lively discussions on subreddit pages, and enjoy seamless viewing of all types of Reddit media – images, videos, and more. 
+* **Features:**  The site offers post sorting, searching, and visual customization
 
 ## Features
 
@@ -52,18 +29,25 @@ The app begins in light mode, but there is a dark mode available if the user pre
 
 THe default accent color of the app is blue, but if a user doesn't like that, they can change it to red, green, yellow, or back to blue if they have come to their senses.
 
-## Future work
+## Technologies Used
 
-This app can be improved by displaying subreddit sidebar information, 
+* **Frontend:** 
+    * HTML and JSX
+    * CSS and CSS-IN-JS
+    * JavaScript, React, Redux
+* **Backend:**
+    * Page is deployed with netlify, everything else is on the front end
+    * Database is acessed via the Reddit API
+* **Other tools/libraries** Git, Github, VSCode
 
-### Enable account access
+## Project Structure
 
-allows the user to upvote and downvote, comment, post
+* The project is built with React, so it is organized into components. The components are separated according to whether they are a container component or a presentation component. The CSS files are centralized in App.css
 
-### View more subreddit detail
+## Deployment
 
-It would be nice for the peripheral subreddit information to be displayed, such as thumbnail, header image, mods, rules, and so on.
+* **Instructions:** This website can be deployed using netlify's deployment service for React
 
-### Add a user page
+## Acknowledgments
 
-THe app ccould allow you to view all thed posts, comments, etc of a user. 
+* This was a keystone project in a programming course I took. It would also not be possible without the reddit API.

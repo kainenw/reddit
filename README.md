@@ -19,12 +19,6 @@ Navigate Reddit with ease, search for your interests, and personalize your exper
     * Netlify (deployment)
     * Reddit API (data source)
 
-## Getting Started
-
-1. **Clone the repository:** `git clone https://github.com/your-username/project-name.git`
-2. **Install dependencies:** `npm install` or `yarn install` 
-3. **Start the development server:** `npm start`
-
 ## Project Structure
 
 * The project uses React components for well-organized code.  Presentation and container components are separated for clarity.
